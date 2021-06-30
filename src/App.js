@@ -1,11 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Card from './components/Card/card.component';
+import {robots} from './robots';
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div >
-        <h1>hello world</h1>
+        {
+          robots.map(robot => (
+            <Card
+              key={robot.id}
+              name={robot.name}
+              username={robot.username}
+              email={robot.email}
+            />
+          ))
+        }
       </div>
     );
   }
