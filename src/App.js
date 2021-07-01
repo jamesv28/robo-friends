@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import CardList from './components/CardList/cardlist.component';
 import Header from './components/Header/header.component';
-
-import {robots} from './robots';
+import Scroll from './containers/Scroll/Scroll';
 
 import './App.css';
 
@@ -11,9 +10,17 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      robots,
+      robots: [],
       searchField: ''
     }
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(users => this.setState({
+        robots: users
+      }))
   }
 
   onSearchChange = (e) => {
@@ -23,16 +30,28 @@ class App extends Component {
   }
 
   render() {
+
+    const {robots} = this.state;
+
     const filteredRobots = this.state.robots.filter(robot => {
       return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())
     });
 
-    return (
-      < >
+    return robots.length ?
+    (
+      <>
         <Header searchChange={this.onSearchChange} />
-        <CardList robots={filteredRobots}/>
+        <Scroll>
+          <CardList robots={filteredRobots}/>
+        </Scroll>
       </>
-    );
+     ) :
+     (
+      <header>
+        <h1 className="tc" aria-busy="true" role="alert">Loading...</h1>
+      </header>
+     ) 
+
   }
 }
 
