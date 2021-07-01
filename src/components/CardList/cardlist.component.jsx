@@ -1,8 +1,7 @@
 import React from 'react';
 import Card from '../Card/card.component';
-import {robots} from '../../robots';
 
-const CardList = () => (
+const CardList = ({robots}) => (
     <main>
         {
           robots.map(robot => (
