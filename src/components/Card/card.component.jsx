@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Card = ({username, name, email}) => (
-    <div className="bg-light-green dib pa3 ma2 grow bw2 shadow-5 tc">
+    <div className="bg-light-green dib pa3 ma2 grow bw2 shadow-5 tc" >
         <img src={`https://robohash.org/${username}`} alt={name}/>
         <div>
             <h2>{name}</h2>
