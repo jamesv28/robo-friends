@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {setSearchField} from './actions/actions';
 import CardList from './components/CardList/cardlist.component';
 import Header from './components/Header/header.component';
 import Scroll from './containers/Scroll/Scroll';
@@ -12,7 +14,6 @@ class App extends Component {
     super();
     this.state = {
       robots: [],
-      searchField: ''
     }
   }
 
@@ -24,24 +25,19 @@ class App extends Component {
       }))
   }
 
-  onSearchChange = (e) => {
-    this.setState({
-      searchField: e.target.value
-    });
-  }
-
   render() {
 
     const {robots} = this.state;
+    const {searchField, onSearchChange} = this.props;
 
     const filteredRobots = this.state.robots.filter(robot => {
-      return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+      return robot.name.toLowerCase().includes(searchField.toLowerCase())
     });
 
     return robots.length ?
     (
       <>
-        <Header searchChange={this.onSearchChange} />
+        <Header searchChange={onSearchChange} />
         <Scroll>
           <ErrorBoundary>
             <CardList robots={filteredRobots}/>
@@ -58,4 +54,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    searchField: state.searchField
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
