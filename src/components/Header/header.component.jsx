@@ -3,10 +3,6 @@ import CounterButton from '../CounterButton/counter.button';
 
 class Header extends Component {
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return false;
-    // }
-
     render() {
         const {searchChange} = this.props;
         return (
@@ -20,7 +16,6 @@ class Header extends Component {
                     type="search" 
                     placeholder="Search Robots" 
                 />
-                <CounterButton color={'red'} />
             </header>
         )
     }
