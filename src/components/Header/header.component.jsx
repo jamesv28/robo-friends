@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import CounterButton from '../CounterButton/counter.button';
 
 class Header extends Component {
 

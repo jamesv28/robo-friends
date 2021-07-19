@@ -5,6 +5,7 @@ import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {searchRobots, requestRobots} from './reducers/reducers';
 import {createLogger} from 'redux-logger';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import './index.css';
 import App from './App';
 import 'tachyons';
@@ -21,5 +22,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+serviceWorkerRegistration.unregister();
 
 reportWebVitals();
