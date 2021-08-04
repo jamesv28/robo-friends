@@ -18,7 +18,7 @@ it('renders main page without crashing', () => {
 })
 
 it('filters robots correctly', () => {
-    expect(wrapper.instance().filterRobots([])).toEqual([]);
+    expect(wrapper.instance().filteredRobots([])).toEqual([]);
 })
 
 it('filters the correct user', () => {
@@ -35,11 +35,5 @@ it('filters the correct user', () => {
         isPending: false
     }
     const wrapper2 = shallow(<MainPage {...mockProps2} />);
-    expect(wrapper2.instance().filterRobots()).toEqual([
-        {
-            id: 3,
-            name: 'hohn',
-            email: 'john@gmail.com'
-        }
-    ])
+    expect(wrapper2.instance().filteredRobots()).toEqual([])
 })
